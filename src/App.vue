@@ -1,9 +1,11 @@
 <template>
-  <HelloWorld msg="Welcome to Your Vue.js App" />
+  <div>
+    <router-view />
+  </div>
 </template>
 
 <script>
-import './styles/situacoes_colors.scss'
+import './styles/app.scss'
 
 export default {
   name: 'App',

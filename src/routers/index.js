@@ -1,5 +1,4 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import isLogged from '../helpers/sessionHandlers/isLogged'
 
 import HelloWorld from '../views/HelloWorld.vue'
 
