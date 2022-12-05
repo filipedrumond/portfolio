@@ -1,0 +1,17 @@
+$situacoes: ();
+$situacoes: map-merge(
+  (
+    "1": red,
+    // Em Aberto
+  ),
+  $situacoes
+);
+
+@each $sit_id, $color in $situacoes {
+  .bg-sit-#{$sit_id} {
+    background-color: $color;
+  }
+  .color-sit-#{$sit_id} {
+    color: $color;
+  }
+}
