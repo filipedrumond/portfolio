@@ -1,15 +1,15 @@
 <template>
   <div>
-    <default-template-vue></default-template-vue>
+    <default-template></default-template>
   </div>
 </template>
 
 <script>
-import DefaultTemplateVue from '@/components/templates/DefaultTemplate.vue'
+import DefaultTemplate from '@/components/templates/DefaultTemplate.vue'
 
 export default {
-  name: 'HelloWorld',
-  components: { DefaultTemplateVue },
+  name: 'Home',
+  components: { DefaultTemplate },
   props: {
     msg: String,
   },
