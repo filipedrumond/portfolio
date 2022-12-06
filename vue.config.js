@@ -18,4 +18,13 @@ module.exports = {
   devServer: {
     port: 8091,
   },
+  css: {
+    loaderOptions: {
+      sass: {
+        additionalData: `
+          @import "@/styles/configs";
+        `,
+      },
+    },
+  },
 }

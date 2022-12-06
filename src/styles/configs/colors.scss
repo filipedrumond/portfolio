@@ -2,49 +2,63 @@ $facebookColor: #3b5998;
 $twitterColor: #00acee;
 $googleColor: #db4a39;
 $socialColorList: (
-    "facebook": $facebookColor,
-    "twitter": $twitterColor,
-    "google": $googleColor,
+  "facebook": $facebookColor,
+  "twitter": $twitterColor,
+  "google": $googleColor,
 );
 
-$black: #555;
 $white: #fff;
-$gray: #9ca7b7;
-$lightGray: #d1dae4;
+$gray-100: #f5f5f5;
+$gray-200: #e9e9e9;
+$gray-300: #dedede;
+$gray-400: #cecece;
+$gray-500: #adadad;
+$gray-600: #656565;
+$gray-700: #494949;
+$gray-800: #333333;
+$gray-900: #222222;
+$black: #000;
 
 $danger: #d9534f;
 $warning: #f0ad4e;
 $info: #5bc0de;
 $success: #5cb85c;
 
+$yellow: #ffe031;
+$pink: #f04579;
+
+$primary: #e5f230;
+$secondary: #54d863;
+
+$theme: 2;
 @if $theme == 1 {
-    $primary: #1eadf0;
-    $secondary: #0afb60;
+  $primary: #1eadf0;
+  $secondary: #0afb60;
 } @else if $theme == 2 {
-    $primary: #ffe031;
-    $secondary: #f04579;
+  $primary: #ffe031;
+  $secondary: #f04579;
 } @else if $theme == 3 {
-    $primary: #0100ec;
-    $secondary: #fb36f4;
+  $primary: #0100ec;
+  $secondary: #fb36f4;
 } @else if $theme == 4 {
-    $primary: #00ffed;
-    $secondary: #9d00c6;
+  $primary: #00ffed;
+  $secondary: #9d00c6;
 } @else if $theme == 5 {
-    $primary: #f237ef;
-    $secondary: #fc5252;
+  $primary: #f237ef;
+  $secondary: #fc5252;
 } @else if $theme == 6 {
-    $primary: #ffe53b;
-    $secondary: #ff2525;
+  $primary: #ffe53b;
+  $secondary: #ff2525;
 } @else {
-    $primary: #e5f230;
-    $secondary: #54d863;
+  $primary: #e5f230;
+  $secondary: #54d863;
 }
 
 $theme-colors: ();
 $theme-colors: map-merge(
   (
     "primary": $primary,
-    "secondary" : $secondary,
+    "secondary": $secondary,
   ),
   $theme-colors
 );
