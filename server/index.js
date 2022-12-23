@@ -1,7 +1,11 @@
 const express = require('express')
 const app = express()
 
-app.use('/', express.static('dist'))
-app.listen(80, () => {
+const baseDir = `${__dirname}/../dist/`
+app.use(express.static(`${baseDir}`))
+app.get('/', (req, res) => res.sendfile('index.html', { root: baseDir }))
+
+const port = 3000
+app.listen(port, () => {
   console.log('running 80')
 })
