@@ -7,5 +7,5 @@ app.get('/', (req, res) => res.sendfile('index.html', { root: baseDir }))
 
 const port = 3000
 app.listen(port, () => {
-  console.log('running 80')
+  console.log('running ' + port)
 })
