@@ -1,0 +1,22 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "usuario": "filipe",
+      "senha": "123",
+      "permissao": 2
+    }
+  ],
+  "permissoes": [
+    {
+      "id": 1,
+      "tipo": "comum"
+    },
+    {
+      "id": 2,
+      "tipo": "admin"
+    }
+  ],
+  "numeros": [{ "id": 1, "status": 1 }],
+  "status": [{ "id": 1, "tipo": "livre" }]
+}
