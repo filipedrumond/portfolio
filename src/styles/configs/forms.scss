@@ -1,0 +1,16 @@
+div:has(input[required]) label,
+div:has(select[required]) label {
+  position: relative;
+  &::after {
+    position: absolute;
+    content: "*";
+    color: red;
+    top: -5px;
+    font-size: 0.9rem;
+    opacity: 0.6 !important;
+  }
+}
+input::placeholder {
+  opacity: 0.5;
+  color: $gray-600;
+}
