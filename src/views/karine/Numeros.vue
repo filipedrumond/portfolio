@@ -7,7 +7,29 @@
           <div class="form">
             <div class="titulo">
               <h1 class="">Chá rifa Cecilia</h1>
-              {{ status }}
+              <div>
+                <div class="numeros">
+                  <div
+                    v-for="numero in numeros_tratado"
+                    :key="numero"
+                    class="numero"
+                  >
+                    <input
+                      type="checkbox"
+                      :id="`check-${numero.id}`"
+                      :disabled="numero.disabled"
+                    />
+                    <label
+                      :for="`check-${numero.id}`"
+                      @click="addNumero(numero)"
+                      :class="`status-${numero.status}`"
+                    >
+                      {{ numero.id }}
+                    </label>
+                  </div>
+                </div>
+                <div>PAGNICAO</div>
+              </div>
             </div>
           </div>
         </div>
@@ -32,6 +54,15 @@ export default {
       numeros: 'getNumeros',
       status: 'getStatus',
     }),
+    numeros_tratado: function () {
+      let tratado = this.numeros
+      tratado.map((numero) => {
+        numero.checked = false
+        numero.disabled = numero.status != 1
+        return numero
+      })
+      return tratado
+    },
   },
   methods: {
     ...mapActions('session', ['doLogin']),
@@ -41,6 +72,10 @@ export default {
       let session = this.form_data
       this.doLogin(session)
     },
+    addNumero: function (numero) {
+      if (numero.disabled) return
+      this.form_data.numeros.push(numero)
+    },
   },
   created: function () {
     this.loadNumeros()
@@ -48,8 +83,7 @@ export default {
   },
   data: () => ({
     form_data: {
-      nome: '',
-      telefone: '',
+      numeros: [],
     },
   }),
 }
@@ -93,11 +127,38 @@ form {
         width: 100%;
         text-align: center;
       }
-      .input {
-        width: 100%;
+      .numeros {
         display: flex;
         flex-wrap: wrap;
-        margin-bottom: 1rem;
+        .numero {
+          width: calc(20% - 4px);
+          box-shadow: 3px 3px 5px $gray-400;
+
+          margin-top: 4px;
+          margin-right: 4px;
+          input:checked + label {
+            background: $success !important;
+          }
+          > input {
+            display: none;
+          }
+          > label {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 6px 0;
+            &.status-1 {
+              background: white;
+            }
+            &.status-2 {
+              background: $warning;
+            }
+            &.status-3 {
+              background: $danger;
+            }
+          }
+        }
       }
     }
   }

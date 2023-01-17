@@ -35,4 +35,20 @@ export default class Numeros {
       }
     })
   }
+  static async populateNumeros(body) {
+    return new Promise((res, rej) => {
+      try {
+        clientAPI
+          .post(`${urlBase}/numeros`, body)
+          .then((response) => {
+            res(response)
+          })
+          .catch((error) => {
+            rej(error)
+          })
+      } catch (err) {
+        rej(err)
+      }
+    })
+  }
 }
