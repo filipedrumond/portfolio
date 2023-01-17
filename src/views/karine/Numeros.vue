@@ -7,31 +7,7 @@
           <div class="form">
             <div class="titulo">
               <h1 class="">Chá rifa Cecilia</h1>
-            </div>
-            <div>
-              <div class="input">
-                <label for="inputName" class="form-label"> Nome </label>
-                <input
-                  type="tel"
-                  class="form-control"
-                  id="inputName"
-                  placeholder="Filipe Drumond"
-                  v-model="form_data.nome"
-                  required
-                />
-              </div>
-              <div class="input">
-                <label for="inputTel" class="form-label"> Telefone </label>
-                <input
-                  type="tel"
-                  class="form-control"
-                  id="inputTel"
-                  placeholder="(00) 90000-0000"
-                  v-model="form_data.telefone"
-                  required
-                />
-              </div>
-              <button type="submit" class="btn btn-primary">Enviar</button>
+              {{ status }}
             </div>
           </div>
         </div>
@@ -46,21 +22,29 @@ import '../../assets/img/textura_sorvete.jpg'
 import { mapGetters, mapActions } from 'vuex'
 
 export default {
-  name: 'Cadastro',
+  name: 'Numeros',
   components: { RifaTemplate },
   props: {
     msg: String,
   },
+  computed: {
+    ...mapGetters('numeros', {
+      numeros: 'getNumeros',
+      status: 'getStatus',
+    }),
+  },
   methods: {
     ...mapActions('session', ['doLogin']),
+    ...mapActions('numeros', ['loadNumeros', 'loadStatus']),
     formSubmit: function (e) {
       e.preventDefault()
       let session = this.form_data
       this.doLogin(session)
-      this.$router.push({
-        path: '/rifa-karine/numeros',
-      })
     },
+  },
+  created: function () {
+    this.loadNumeros()
+    this.loadStatus()
   },
   data: () => ({
     form_data: {
