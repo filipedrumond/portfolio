@@ -7,4 +7,7 @@ export default {
   [types.SET_STATUS](state, payload = { status }) {
     state.status = payload.status
   },
+  [types.SET_SELECTED_NUMEROS](state, payload = { selected_numeros }) {
+    state.selected_numeros = payload.selected_numeros
+  },
 }

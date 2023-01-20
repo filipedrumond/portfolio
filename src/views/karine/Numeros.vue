@@ -28,7 +28,33 @@
                     </label>
                   </div>
                 </div>
-                <div>PAGNICAO</div>
+                <div>
+                  <button
+                    @click="
+                      (e) => {
+                        if (pagina_atual == 0) return
+                        pagina_atual--
+                      }
+                    "
+                  >
+                    -
+                  </button>
+                  {{ pagina_atual + 1 }}
+                  <button
+                    @click="
+                      (e) => {
+                        if (pagina_atual == ultima_pagina) return
+                        pagina_atual++
+                      }
+                    "
+                  >
+                    +
+                  </button>
+                </div>
+                <div>
+                  {{ form_data }}
+                  <button @click="enviar">ENVIAR</button>
+                </div>
               </div>
             </div>
           </div>
@@ -52,21 +78,30 @@ export default {
   computed: {
     ...mapGetters('numeros', {
       numeros: 'getNumeros',
-      status: 'getStatus',
     }),
     numeros_tratado: function () {
-      let tratado = this.numeros
+      let tratado = this.dados_pagina_atual
       tratado.map((numero) => {
-        numero.checked = false
+        // numero.checked = false
         numero.disabled = numero.status != 1
         return numero
       })
       return tratado
     },
+    dados_pagina_atual: function () {
+      let comeco = this.pagina_atual * this.registros_por_pag
+      let final = (this.pagina_atual + 1) * this.registros_por_pag
+      let numeros = this.numeros.slice(comeco, final)
+
+      return numeros
+    },
+    ultima_pagina: function () {
+      return this.numeros.length / this.registros_por_pag - 1
+    },
   },
   methods: {
     ...mapActions('session', ['doLogin']),
-    ...mapActions('numeros', ['loadNumeros', 'loadStatus']),
+    ...mapActions('numeros', ['loadNumeros', 'loadStatus', 'setNumeros']),
     formSubmit: function (e) {
       e.preventDefault()
       let session = this.form_data
@@ -76,12 +111,20 @@ export default {
       if (numero.disabled) return
       this.form_data.numeros.push(numero)
     },
+    enviar: async function () {
+      let numeros = this.form_data.numeros
+      this.setNumeros(numeros)
+      this.$router.push({
+        path: '/rifa-karine/conluido',
+      })
+    },
   },
   created: function () {
     this.loadNumeros()
-    this.loadStatus()
   },
   data: () => ({
+    pagina_atual: 0,
+    registros_por_pag: 50,
     form_data: {
       numeros: [],
     },
@@ -148,8 +191,12 @@ form {
             justify-content: center;
             align-items: center;
             padding: 6px 0;
+            transition: 200ms all;
             &.status-1 {
               background: white;
+              &:hover {
+                background: lighten($success, $amount: 10) !important;
+              }
             }
             &.status-2 {
               background: $warning;

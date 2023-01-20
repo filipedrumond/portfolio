@@ -32,6 +32,7 @@
                 />
               </div>
               <button type="submit" class="btn btn-primary">Enviar</button>
+              {{ numeros }}
             </div>
           </div>
         </div>
@@ -51,12 +52,22 @@ export default {
   props: {
     msg: String,
   },
+  computed: {
+    ...mapGetters('numeros', {
+      numeros: 'getSelectedNumeros',
+    }),
+    ...mapGetters('session', {
+      usuario: 'getSession',
+    }),
+  },
   methods: {
-    ...mapActions('session', ['doLogin']),
-    formSubmit: function (e) {
+    ...mapActions('session', ['doLogin', 'saveRegistro']),
+    formSubmit: async function (e) {
       e.preventDefault()
       let session = this.form_data
-      this.doLogin(session)
+      await this.doLogin(session)
+      await this.saveRegistro()
+
       this.$router.push({
         path: '/rifa-karine/numeros',
       })
@@ -68,6 +79,12 @@ export default {
       telefone: '',
     },
   }),
+  created: function () {
+    if (this.usuario.nome == '')
+      return this.$router.push({
+        path: '/rifa-karine',
+      })
+  },
 }
 </script>
 

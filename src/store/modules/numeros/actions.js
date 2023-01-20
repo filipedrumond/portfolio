@@ -5,7 +5,6 @@ import Numeros from '../../../services/numeros'
 export const loadNumeros = async ({ commit }) => {
   let numeros = await Numeros.getNumeros()
   numeros = numeros.data
-  numeros = numeros.slice(0, 50)
   commit(types.SET_NUMEROS, { numeros })
   return numeros
 }
@@ -19,4 +18,7 @@ export const loadStatus = async ({ commit }) => {
   //   await Numeros.populateNumeros(element)
   // }
   return status
+}
+export const setNumeros = async ({ commit }, numeros) => {
+  commit(types.SET_SELECTED_NUMEROS, { selected_numeros: numeros })
 }
