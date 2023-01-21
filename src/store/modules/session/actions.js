@@ -18,7 +18,7 @@ export const doLogin = async ({ commit }, data = { nome, telefone }) => {
 
 export const saveRegistro = async () => {
   let numeros = store.getters['numeros/getSelectedNumeros'] || []
-  let numeros_tratados = numeros.map((numero) => {
+  let numeros_tratados = Object.entries(numeros).map(([index, numero]) => {
     numero.status = 2
     return numero
   })
@@ -32,7 +32,10 @@ export const saveRegistro = async () => {
     let request_body = {
       usuario,
       data_hora: moment().format('D/M/Y H:m'),
-      numero: numero.id,
+      numero: {
+        id: numero.id,
+        status: numero.status,
+      },
     }
     let response_registro = Registros.saveRegistro(request_body)
     promises.push(response_registro)

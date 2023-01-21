@@ -6,54 +6,55 @@
           <img src="../../assets/img/textura_sorvete.jpg" alt="" />
           <div class="form">
             <div class="titulo">
-              <h1 class="">Chá rifa Cecilia</h1>
-              <div>
-                <div class="numeros">
-                  <div
-                    v-for="numero in numeros_tratado"
-                    :key="numero"
-                    class="numero"
+              <h1 class="font-adam-scrpit">Cha rifa Cecilia</h1>
+            </div>
+            <div>
+              <div class="numeros">
+                <div
+                  v-for="numero in numeros_tratado"
+                  :key="numero"
+                  class="numero"
+                >
+                  <input
+                    type="checkbox"
+                    :id="`check-${numero.id}`"
+                    :disabled="numero.disabled"
+                  />
+                  <label
+                    :for="`check-${numero.id}`"
+                    @click="addNumero(numero)"
+                    :class="`status-${numero.status} font-open-sans-bold`"
                   >
-                    <input
-                      type="checkbox"
-                      :id="`check-${numero.id}`"
-                      :disabled="numero.disabled"
-                    />
-                    <label
-                      :for="`check-${numero.id}`"
-                      @click="addNumero(numero)"
-                      :class="`status-${numero.status}`"
-                    >
-                      {{ numero.id }}
-                    </label>
-                  </div>
+                    {{ numero.id }}
+                  </label>
                 </div>
-                <div>
-                  <button
-                    @click="
-                      (e) => {
-                        if (pagina_atual == 0) return
-                        pagina_atual--
-                      }
-                    "
+              </div>
+              <div class="rodape">
+                <div class="paginacao">
+                  <a
+                    :class="pagina_atual == 0 ? 'hide' : ''"
+                    @click="irParaPagina(-1)"
                   >
-                    -
-                  </button>
-                  {{ pagina_atual + 1 }}
-                  <button
-                    @click="
-                      (e) => {
-                        if (pagina_atual == ultima_pagina) return
-                        pagina_atual++
-                      }
-                    "
+                    <i class="material-icons">chevron_left</i>
+                  </a>
+                  <span>
+                    {{ pagina_atual + 1 }}
+                  </span>
+                  <a
+                    :class="pagina_atual == ultima_pagina ? 'hide' : ''"
+                    @click="irParaPagina(+1)"
                   >
-                    +
-                  </button>
+                    <i class="material-icons">chevron_right</i>
+                  </a>
                 </div>
-                <div>
-                  {{ form_data }}
-                  <button @click="enviar">ENVIAR</button>
+                <div class="">
+                  <button
+                    :disabled="Object.entries(form_data.numeros).length == 0"
+                    class="btn btn-success btn-lg"
+                    @click="enviar"
+                  >
+                    Continuar
+                  </button>
                 </div>
               </div>
             </div>
@@ -96,7 +97,7 @@ export default {
       return numeros
     },
     ultima_pagina: function () {
-      return this.numeros.length / this.registros_por_pag - 1
+      return Math.ceil(this.numeros.length / this.registros_por_pag - 1)
     },
   },
   methods: {
@@ -109,14 +110,28 @@ export default {
     },
     addNumero: function (numero) {
       if (numero.disabled) return
-      this.form_data.numeros.push(numero)
+      let numeros = this.form_data.numeros
+      let numero_ = numero.id
+
+      if (numeros.hasOwnProperty(numero_))
+        return delete this.form_data.numeros[numero_]
+
+      this.form_data.numeros[numero_] = numero
     },
     enviar: async function () {
       let numeros = this.form_data.numeros
       this.setNumeros(numeros)
       this.$router.push({
-        path: '/rifa-karine/conluido',
+        path: '/rifa-karine',
       })
+    },
+    irParaPagina: function (direcao) {
+      if (direcao == +1) {
+        if (this.pagina_atual == this.ultima_pagina) return
+        return this.pagina_atual++
+      }
+      if (this.pagina_atual == 0) return
+      this.pagina_atual--
     },
   },
   created: function () {
@@ -126,7 +141,7 @@ export default {
     pagina_atual: 0,
     registros_por_pag: 50,
     form_data: {
-      numeros: [],
+      numeros: {},
     },
   }),
 }
@@ -139,6 +154,8 @@ form {
   justify-content: center;
   h1 {
     margin: 0;
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
   }
   .fundo-container {
     width: 40vw;
@@ -192,6 +209,7 @@ form {
             align-items: center;
             padding: 6px 0;
             transition: 200ms all;
+            cursor: pointer;
             &.status-1 {
               background: white;
               &:hover {
@@ -204,6 +222,48 @@ form {
             &.status-3 {
               background: $danger;
             }
+          }
+        }
+      }
+      .rodape {
+        display: flex;
+        margin-top: 1rem;
+        .btn {
+          color: $white !important;
+          font-weight: bold;
+          height: 50px;
+        }
+
+        > div {
+          width: 50%;
+          display: flex;
+          align-items: center;
+          &:not(.paginacao) {
+            justify-content: flex-end;
+          }
+        }
+        .paginacao {
+          font-size: 2rem;
+          .hide {
+            opacity: 0;
+            pointer-events: none;
+          }
+          > a,
+          > span {
+            display: flex;
+            box-shadow: 3px 3px 5px $gray-400;
+            background: white;
+            width: 50px;
+            height: 50px;
+            margin-right: 4px;
+          }
+          > a {
+            font-size: 150%;
+            cursor: pointer;
+          }
+          > span {
+            align-items: center;
+            justify-content: center;
           }
         }
       }

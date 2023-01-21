@@ -6,7 +6,7 @@
           <img src="../../assets/img/textura_sorvete.jpg" alt="" />
           <div class="form">
             <div class="titulo">
-              <h1 class="">Chá rifa Cecilia</h1>
+              <h1 class="font-adam-scrpit">Cha rifa Cecilia</h1>
             </div>
             <div>
               <div class="input">
@@ -33,6 +33,7 @@
               </div>
               <button type="submit" class="btn btn-primary">Enviar</button>
               {{ numeros }}
+              <i class="material-icons">add_link</i>
             </div>
           </div>
         </div>
@@ -69,7 +70,7 @@ export default {
       await this.saveRegistro()
 
       this.$router.push({
-        path: '/rifa-karine/numeros',
+        path: '/rifa-karine/conluido',
       })
     },
   },
@@ -95,6 +96,7 @@ form {
   justify-content: center;
   h1 {
     margin: 0;
+    font-size: 2.5rem;
   }
   .fundo-container {
     width: 40vw;

@@ -10,7 +10,10 @@ export default class Registros {
         nome: '',
         telefone: '',
       },
-      numero: 1,
+      numero: {
+        id: 1,
+        status: 1,
+      },
     }
     const request_body = Object.assign({}, deafult_body, registro)
 
