@@ -11,12 +11,12 @@ const routes = [
     component: Home,
   },
   {
-    path: '/rifa-karine',
+    path: '/rifa-karine/cadastro',
     name: 'RifaCadastro',
     component: Cadastro,
   },
   {
-    path: '/rifa-karine/numeros',
+    path: '/rifa-karine',
     name: 'Numeros',
     component: Numeros,
   },

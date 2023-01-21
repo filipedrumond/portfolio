@@ -119,7 +119,7 @@ export default {
       let numeros = this.form_data.numeros
       this.setNumeros(numeros)
       this.$router.push({
-        path: '/rifa-karine',
+        path: '/rifa-karine/cadastro',
       })
     },
     addNumero: function (numero) {

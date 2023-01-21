@@ -88,7 +88,7 @@ export default {
     },
   }),
   created: function () {
-    if (this.usuario.nome == '')
+    if (Object.entries(this.numeros).length < 1)
       return this.$router.push({
         path: '/rifa-karine',
       })
