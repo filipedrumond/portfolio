@@ -51,10 +51,21 @@
                   <button
                     :disabled="Object.entries(form_data.numeros).length == 0"
                     class="btn btn-success btn-lg"
-                    @click="enviar"
+                    type="submit"
                   >
                     Continuar
                   </button>
+                </div>
+                <div
+                  class="valor"
+                  v-show="Object.entries(form_data.numeros).length > 0"
+                >
+                  Total a pagar:
+                  {{
+                    $filters.toMoney(
+                      Object.entries(form_data.numeros).length * 50
+                    )
+                  }}
                 </div>
               </div>
             </div>
@@ -103,10 +114,13 @@ export default {
   methods: {
     ...mapActions('session', ['doLogin']),
     ...mapActions('numeros', ['loadNumeros', 'loadStatus', 'setNumeros']),
-    formSubmit: function (e) {
+    formSubmit: async function (e) {
       e.preventDefault()
-      let session = this.form_data
-      this.doLogin(session)
+      let numeros = this.form_data.numeros
+      this.setNumeros(numeros)
+      this.$router.push({
+        path: '/rifa-karine',
+      })
     },
     addNumero: function (numero) {
       if (numero.disabled) return
@@ -117,13 +131,6 @@ export default {
         return delete this.form_data.numeros[numero_]
 
       this.form_data.numeros[numero_] = numero
-    },
-    enviar: async function () {
-      let numeros = this.form_data.numeros
-      this.setNumeros(numeros)
-      this.$router.push({
-        path: '/rifa-karine',
-      })
     },
     irParaPagina: function (direcao) {
       if (direcao == +1) {
@@ -140,6 +147,7 @@ export default {
   data: () => ({
     pagina_atual: 0,
     registros_por_pag: 50,
+    valor_rifa: 50,
     form_data: {
       numeros: {},
     },
@@ -228,10 +236,15 @@ form {
       .rodape {
         display: flex;
         margin-top: 1rem;
+        flex-wrap: wrap;
         .btn {
           color: $white !important;
           font-weight: bold;
           height: 50px;
+          @media (max-width: 576px) {
+            height: 40px;
+            padding-top: 0.2rem;
+          }
         }
 
         > div {
@@ -241,6 +254,14 @@ form {
           &:not(.paginacao) {
             justify-content: flex-end;
           }
+          @media (max-width: 576px) {
+            margin-top: 4px;
+            justify-content: flex-end;
+          }
+        }
+        .valor {
+          margin-top: 8px;
+          width: 100%;
         }
         .paginacao {
           font-size: 2rem;
@@ -256,10 +277,17 @@ form {
             width: 50px;
             height: 50px;
             margin-right: 4px;
+            @media (max-width: 576px) {
+              width: 40px;
+              height: 40px;
+            }
           }
           > a {
             font-size: 150%;
             cursor: pointer;
+            @media (max-width: 576px) {
+              font-size: 120%;
+            }
           }
           > span {
             align-items: center;

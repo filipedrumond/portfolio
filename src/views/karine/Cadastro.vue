@@ -15,7 +15,7 @@
                   type="tel"
                   class="form-control"
                   id="inputName"
-                  placeholder="Filipe Drumond"
+                  placeholder="Nome Sobrenome"
                   v-model="form_data.nome"
                   required
                 />
@@ -27,13 +27,20 @@
                   class="form-control"
                   id="inputTel"
                   placeholder="(00) 90000-0000"
+                  v-mask="['(##) ####-####', '(##) #####-####']"
                   v-model="form_data.telefone"
                   required
                 />
               </div>
-              <button type="submit" class="btn btn-primary">Enviar</button>
-              {{ numeros }}
-              <i class="material-icons">add_link</i>
+            </div>
+            <div class="rodape">
+              <div class="valor" v-if="Object.entries(numeros).length > 0">
+                Total a pagar:
+                {{ $filters.toMoney(Object.entries(numeros).length * 50) }}
+              </div>
+              <div>
+                <button type="submit" class="btn btn-success">Enviar</button>
+              </div>
             </div>
           </div>
         </div>
@@ -133,6 +140,33 @@ form {
         display: flex;
         flex-wrap: wrap;
         margin-bottom: 1rem;
+        > label {
+          font-weight: bold;
+        }
+      }
+      .rodape {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        > div {
+          display: flex;
+          width: 50%;
+          &:not(.valor) {
+            justify-content: flex-end;
+          }
+          @media (max-width: 576px) {
+            width: 100%;
+            &:not(.valor) {
+              margin-top: 8px;
+            }
+          }
+        }
+        .btn {
+          color: $white !important;
+          font-weight: bold;
+          height: 50px;
+        }
       }
     }
   }
