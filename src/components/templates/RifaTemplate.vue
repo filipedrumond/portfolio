@@ -57,7 +57,7 @@ export default {
 
   > img {
     position: absolute;
-    opacity: 0.9;
+    opacity: 0.7;
   }
   .img-varal {
     top: 0;
@@ -92,18 +92,18 @@ export default {
     bottom: -60px;
     left: -125px;
     width: 42%;
+    opacity: 0.5;
     @media (max-width: 576px) {
       width: 90%;
-      opacity: 0.5;
     }
   }
   .img-quadrados {
     bottom: 10px;
     left: 10px;
     width: 10%;
+    opacity: 0.1;
     @media (max-width: 576px) {
       width: 20%;
-      opacity: 0.1;
     }
   }
 }

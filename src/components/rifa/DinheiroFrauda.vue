@@ -42,11 +42,8 @@ h2 {
 .num-1,
 .fralda {
   display: flex;
-  width: 45%;
+  width: 100%;
   align-items: center;
-  @media (max-width: 576px) {
-    width: 100%;
-  }
   .img-container {
     width: 14%;
     margin-right: 1.9rem;

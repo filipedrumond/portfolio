@@ -2,46 +2,47 @@
   <div>
     <rifa-template>
       <form @submit="formSubmit">
-        <div class="fundo-container">
-          <img src="../../assets/img/textura_sorvete.jpg" alt="" />
-          <div class="form">
-            <div class="titulo">
-              <h1 class="font-open-sans-bold">Cha rifa Cecilia</h1>
+        <div class="form">
+          <div class="titulo">
+            <h1 class="font-open-sans">Chá Rifa da Cecilia</h1>
+          </div>
+
+          <div>
+            <div class="input">
+              <label for="inputName" class="form-label"> Nome </label>
+              <input
+                type="tel"
+                class="form-control"
+                id="inputName"
+                placeholder="Nome Sobrenome"
+                v-model="form_data.nome"
+                required
+              />
+            </div>
+            <div class="input">
+              <label for="inputTel" class="form-label"> Telefone </label>
+              <input
+                type="tel"
+                class="form-control"
+                id="inputTel"
+                placeholder="(00) 90000-0000"
+                v-mask="['(##) ####-####', '(##) #####-####']"
+                v-model="form_data.telefone"
+                required
+              />
+            </div>
+          </div>
+          <div class="rodape">
+            <div class="valor" v-if="Object.entries(numeros).length > 0">
+              Total a pagar:
+              {{ $filters.toMoney(Object.entries(numeros).length * 50) }}
             </div>
             <div>
-              <div class="input">
-                <label for="inputName" class="form-label"> Nome </label>
-                <input
-                  type="tel"
-                  class="form-control"
-                  id="inputName"
-                  placeholder="Nome Sobrenome"
-                  v-model="form_data.nome"
-                  required
-                />
-              </div>
-              <div class="input">
-                <label for="inputTel" class="form-label"> Telefone </label>
-                <input
-                  type="tel"
-                  class="form-control"
-                  id="inputTel"
-                  placeholder="(00) 90000-0000"
-                  v-mask="['(##) ####-####', '(##) #####-####']"
-                  v-model="form_data.telefone"
-                  required
-                />
-              </div>
+              <button type="submit" class="btn btn-success">Concluir</button>
             </div>
-            <div class="rodape">
-              <div class="valor" v-if="Object.entries(numeros).length > 0">
-                Total a pagar:
-                {{ $filters.toMoney(Object.entries(numeros).length * 50) }}
-              </div>
-              <div>
-                <button type="submit" class="btn btn-success">Enviar</button>
-              </div>
-            </div>
+          </div>
+          <div class="dica">
+            <h5>Preencha com seus dados de contato e clique em Concluir</h5>
           </div>
         </div>
       </form>
@@ -104,71 +105,58 @@ form {
   h1 {
     margin: 0;
     font-size: 2.5rem;
+    letter-spacing: -0.1rem;
+    margin-bottom: 1rem;
   }
-  .fundo-container {
-    width: 40vw;
-    border: 4px solid #e2b877;
-    box-shadow: 3px 3px 5px $gray-400;
-    border-radius: 1rem;
-    background: white;
-    position: relative;
-    overflow: hidden;
-    margin-top: 1rem;
-    @media (max-width: 576px) {
-      width: 90vw;
-      margin-top: 5vw;
-    }
+  h5 {
+    margin: 0;
+  }
+  .dica {
+    margin: 1rem 0;
+  }
 
-    > img {
-      position: absolute;
-      width: 100%;
-      height: auto;
-      opacity: 0.3;
-      z-index: 1;
+  .form {
+    z-index: 2;
+    position: inherit;
+    padding: 2rem;
+    @media (max-width: 576px) {
+      padding: 1rem;
     }
-    .form {
-      z-index: 2;
-      position: inherit;
-      padding: 2rem;
-      @media (max-width: 576px) {
-        padding: 1rem;
+    .titulo {
+      width: 100%;
+      text-align: center;
+    }
+    .input {
+      width: 100%;
+      display: flex;
+      flex-wrap: wrap;
+      margin-bottom: 1rem;
+      > label {
+        font-weight: bold;
       }
-      .titulo {
-        width: 100%;
-        text-align: center;
-      }
-      .input {
-        width: 100%;
+    }
+    .rodape {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      > div {
         display: flex;
-        flex-wrap: wrap;
-        margin-bottom: 1rem;
-        > label {
-          font-weight: bold;
+        width: 50%;
+        &:not(.valor) {
+          justify-content: flex-end;
         }
-      }
-      .rodape {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        flex-wrap: wrap;
-        > div {
-          display: flex;
-          width: 50%;
+        @media (max-width: 576px) {
+          width: 100%;
           &:not(.valor) {
-            justify-content: flex-end;
-          }
-          @media (max-width: 576px) {
-            width: 100%;
-            &:not(.valor) {
-              margin-top: 8px;
-            }
+            margin-top: 8px;
           }
         }
-        .btn {
-          color: $white !important;
-          font-weight: bold;
-          height: 50px;
-        }
+      }
+      .btn {
+        color: $white !important;
+        font-weight: bold;
+        height: 50px;
       }
     }
   }

@@ -2,71 +2,71 @@
   <div>
     <rifa-template>
       <form @submit="formSubmit">
-        <div class="fundo-container">
-          <img src="../../assets/img/textura_sorvete.jpg" alt="" />
-          <div class="form">
-            <div class="titulo">
-              <h1 class="font-adam-scrpit">Cha rifa Cecilia</h1>
-            </div>
-            <div>
-              <div class="numeros">
-                <div
-                  v-for="numero in numeros_tratado"
-                  :key="numero"
-                  class="numero"
+        <div class="form">
+          <div class="titulo">
+            <h1 class="font-open-sans">Chá Rifa da Cecilia</h1>
+          </div>
+          <div>
+            <h5>Escolha um número e clique em continuar</h5>
+          </div>
+          <div>
+            <div class="numeros">
+              <div
+                v-for="numero in numeros_tratado"
+                :key="numero"
+                class="numero"
+              >
+                <input
+                  type="checkbox"
+                  :id="`check-${numero.id}`"
+                  :disabled="numero.disabled"
+                />
+                <label
+                  :for="`check-${numero.id}`"
+                  @click="addNumero(numero)"
+                  :class="`status-${numero.status} font-open-sans-bold`"
                 >
-                  <input
-                    type="checkbox"
-                    :id="`check-${numero.id}`"
-                    :disabled="numero.disabled"
-                  />
-                  <label
-                    :for="`check-${numero.id}`"
-                    @click="addNumero(numero)"
-                    :class="`status-${numero.status} font-open-sans-bold`"
-                  >
-                    {{ numero.id }}
-                  </label>
-                </div>
+                  {{ numero.id }}
+                </label>
               </div>
-              <div class="rodape">
-                <div class="paginacao">
-                  <a
-                    :class="pagina_atual == 0 ? 'hide' : ''"
-                    @click="irParaPagina(-1)"
-                  >
-                    <i class="material-icons">chevron_left</i>
-                  </a>
-                  <span>
-                    {{ pagina_atual + 1 }}
-                  </span>
-                  <a
-                    :class="pagina_atual == ultima_pagina ? 'hide' : ''"
-                    @click="irParaPagina(+1)"
-                  >
-                    <i class="material-icons">chevron_right</i>
-                  </a>
-                </div>
-                <div class="">
-                  <button
-                    :disabled="Object.entries(form_data.numeros).length == 0"
-                    class="btn btn-success btn-lg"
-                    type="submit"
-                  >
-                    Continuar
-                  </button>
-                </div>
-                <div
-                  class="valor"
-                  v-show="Object.entries(form_data.numeros).length > 0"
+            </div>
+            <div class="rodape">
+              <div class="paginacao">
+                <a
+                  :class="pagina_atual == 0 ? 'hide' : ''"
+                  @click="irParaPagina(-1)"
                 >
-                  Total a pagar:
-                  {{
-                    $filters.toMoney(
-                      Object.entries(form_data.numeros).length * 50
-                    )
-                  }}
-                </div>
+                  <i class="material-icons">chevron_left</i>
+                </a>
+                <span>
+                  {{ pagina_atual + 1 }}
+                </span>
+                <a
+                  :class="pagina_atual == ultima_pagina ? 'hide' : ''"
+                  @click="irParaPagina(+1)"
+                >
+                  <i class="material-icons">chevron_right</i>
+                </a>
+              </div>
+              <div class="">
+                <button
+                  :disabled="Object.entries(form_data.numeros).length == 0"
+                  class="btn btn-success btn-lg"
+                  type="submit"
+                >
+                  Continuar
+                </button>
+              </div>
+              <div
+                class="valor"
+                v-show="Object.entries(form_data.numeros).length > 0"
+              >
+                Total a pagar:
+                {{
+                  $filters.toMoney(
+                    Object.entries(form_data.numeros).length * 50
+                  )
+                }}
               </div>
             </div>
           </div>
@@ -164,137 +164,120 @@ form {
     margin: 0;
     font-size: 2.5rem;
     margin-bottom: 1rem;
+    letter-spacing: -0.1rem;
   }
-  .fundo-container {
-    width: 40vw;
-    border: 4px solid #e2b877;
-    box-shadow: 3px 3px 5px $gray-400;
-    border-radius: 1rem;
-    background: white;
-    position: relative;
-    overflow: hidden;
-    margin-top: 1rem;
+  h5 {
+    margin: 0;
+  }
+
+  .form {
+    z-index: 2;
+    position: inherit;
+    padding: 2rem;
     @media (max-width: 576px) {
-      width: 90vw;
-      margin-top: 5vw;
+      padding: 1rem;
     }
-
-    > img {
-      position: absolute;
+    .titulo {
       width: 100%;
-      height: auto;
-      opacity: 0.3;
-      z-index: 1;
+      text-align: center;
     }
-    .form {
-      z-index: 2;
-      position: inherit;
-      padding: 2rem;
-      @media (max-width: 576px) {
-        padding: 1rem;
-      }
-      .titulo {
-        width: 100%;
-        text-align: center;
-      }
-      .numeros {
-        display: flex;
-        flex-wrap: wrap;
-        .numero {
-          width: calc(20% - 4px);
-          box-shadow: 3px 3px 5px $gray-400;
+    .numeros {
+      display: flex;
+      flex-wrap: wrap;
+      .numero {
+        width: calc(20% - 4px);
+        box-shadow: 3px 3px 5px $gray-400;
 
-          margin-top: 4px;
-          margin-right: 4px;
-          input:checked + label {
-            background: $success !important;
-          }
-          > input {
-            display: none;
-          }
-          > label {
-            width: 100%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            padding: 6px 0;
-            transition: 200ms all;
-            cursor: pointer;
-            &.status-1 {
-              background: white;
-              &:hover {
-                background: lighten($success, $amount: 10) !important;
-              }
-            }
-            &.status-2 {
-              background: $warning;
-            }
-            &.status-3 {
-              background: $danger;
-            }
-          }
+        margin-top: 4px;
+        margin-right: 4px;
+        input:checked + label {
+          background: $success !important;
         }
-      }
-      .rodape {
-        display: flex;
-        margin-top: 1rem;
-        flex-wrap: wrap;
-        .btn {
-          color: $white !important;
-          font-weight: bold;
-          height: 50px;
-          @media (max-width: 576px) {
-            height: 40px;
-            padding-top: 0.2rem;
-          }
+        > input {
+          display: none;
         }
-
-        > div {
-          width: 50%;
-          display: flex;
-          align-items: center;
-          &:not(.paginacao) {
-            justify-content: flex-end;
-          }
-          @media (max-width: 576px) {
-            margin-top: 4px;
-            justify-content: flex-end;
-          }
-        }
-        .valor {
-          margin-top: 8px;
+        > label {
           width: 100%;
-        }
-        .paginacao {
-          font-size: 2rem;
-          .hide {
-            opacity: 0;
-            pointer-events: none;
-          }
-          > a,
-          > span {
-            display: flex;
-            box-shadow: 3px 3px 5px $gray-400;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          padding: 6px 0;
+          transition: 200ms all;
+          cursor: pointer;
+          &.status-1 {
             background: white;
-            width: 50px;
-            height: 50px;
-            margin-right: 4px;
-            @media (max-width: 576px) {
-              width: 40px;
-              height: 40px;
+            &:hover {
+              background: lighten($success, $amount: 10) !important;
             }
           }
-          > a {
-            font-size: 150%;
-            cursor: pointer;
-            @media (max-width: 576px) {
-              font-size: 120%;
-            }
+          &.status-2 {
+            background: $warning;
           }
-          > span {
-            align-items: center;
-            justify-content: center;
+          &.status-3 {
+            background: $danger;
           }
+        }
+      }
+    }
+    .rodape {
+      display: flex;
+      margin-top: 1rem;
+      flex-wrap: wrap;
+      .btn {
+        color: $white !important;
+        font-weight: bold;
+        height: 50px;
+        @media (max-width: 576px) {
+          height: 40px;
+          padding-top: 0.2rem;
+        }
+      }
+
+      > div {
+        width: 50%;
+        display: flex;
+        align-items: center;
+        &:not(.paginacao) {
+          justify-content: flex-end;
+        }
+        @media (max-width: 576px) {
+          margin-top: 4px;
+          justify-content: flex-end;
+        }
+      }
+      .valor {
+        margin-top: 8px;
+        width: 100%;
+      }
+      .paginacao {
+        font-size: 2rem;
+        .hide {
+          opacity: 0;
+          pointer-events: none;
+        }
+        > a,
+        > span {
+          display: flex;
+          box-shadow: 3px 3px 5px $gray-400;
+          background: white;
+          width: 50px;
+          height: 50px;
+          margin-right: 4px;
+          @media (max-width: 576px) {
+            width: 40px;
+            height: 40px;
+          }
+        }
+        > a {
+          font-size: 150%;
+          cursor: pointer;
+          @media (max-width: 576px) {
+            font-size: 120%;
+          }
+        }
+        > span {
+          align-items: center;
+          justify-content: center;
         }
       }
     }

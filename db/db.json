@@ -65,6 +65,30 @@
         "status": 2
       },
       "id": 5
+    },
+    {
+      "data_hora": "25/1/2023 18:52",
+      "usuario": {
+        "nome": "aa",
+        "telefone": "(31) 8"
+      },
+      "numero": {
+        "id": 29,
+        "status": 2
+      },
+      "id": 6
+    },
+    {
+      "data_hora": "25/1/2023 18:55",
+      "usuario": {
+        "nome": "aa",
+        "telefone": "(11) 11"
+      },
+      "numero": {
+        "id": 145,
+        "status": 2
+      },
+      "id": 7
     }
   ],
   "numeros": [
@@ -182,7 +206,7 @@
     },
     {
       "id": 29,
-      "status": 1
+      "status": 2
     },
     {
       "id": 30,
@@ -646,7 +670,7 @@
     },
     {
       "id": 145,
-      "status": 1
+      "status": 2
     },
     {
       "id": 146,
