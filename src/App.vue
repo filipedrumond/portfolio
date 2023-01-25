@@ -1,7 +1,5 @@
 <template>
-  <div>
-    <router-view />
-  </div>
+  <router-view />
 </template>
 
 <script>
@@ -14,7 +12,7 @@ export default {
 </script>
 
 <style lang="scss">
-#app {
-  color: $gray-900;
-}
+// #app {
+//   color: $gray-900;
+// }
 </style>

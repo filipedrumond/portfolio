@@ -44,6 +44,27 @@
       },
       "numero": 24,
       "id": 3
+    },
+    {
+      "data_hora": "20/1/2023 17:56",
+      "usuario": {
+        "nome": "hjh",
+        "telefone": "21321"
+      },
+      "numero": 33,
+      "id": 4
+    },
+    {
+      "data_hora": "20/1/2023 18:49",
+      "usuario": {
+        "nome": "a",
+        "telefone": "1"
+      },
+      "numero": {
+        "id": 27,
+        "status": 2
+      },
+      "id": 5
     }
   ],
   "numeros": [
@@ -153,7 +174,7 @@
     },
     {
       "id": 27,
-      "status": 1
+      "status": 2
     },
     {
       "id": 28,
@@ -177,7 +198,7 @@
     },
     {
       "id": 33,
-      "status": 1
+      "status": 2
     },
     {
       "id": 34,

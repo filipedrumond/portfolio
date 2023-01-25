@@ -173,8 +173,10 @@ form {
     background: white;
     position: relative;
     overflow: hidden;
+    margin-top: 1rem;
     @media (max-width: 576px) {
       width: 90vw;
+      margin-top: 5vw;
     }
 
     > img {

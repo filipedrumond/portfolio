@@ -6,7 +6,7 @@
           <img src="../../assets/img/textura_sorvete.jpg" alt="" />
           <div class="form">
             <div class="titulo">
-              <h1 class="font-adam-scrpit">Cha rifa Cecilia</h1>
+              <h1 class="font-open-sans-bold">Cha rifa Cecilia</h1>
             </div>
             <div>
               <div class="input">
@@ -77,7 +77,7 @@ export default {
       await this.saveRegistro()
 
       this.$router.push({
-        path: '/rifa-karine/conluido',
+        path: '/rifa-karine/concluido',
       })
     },
   },
@@ -113,8 +113,10 @@ form {
     background: white;
     position: relative;
     overflow: hidden;
+    margin-top: 1rem;
     @media (max-width: 576px) {
       width: 90vw;
+      margin-top: 5vw;
     }
 
     > img {
