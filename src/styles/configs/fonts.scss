@@ -1,4 +1,26 @@
 @font-face {
+  font-family: "MaterialIcons";
+  font-style: normal;
+  font-weight: normal;
+  src: url("@/assets/fonts/Material_Icons/Material_Icons.ttf") format("truetype");
+}
+
+.material-icons {
+  font-family: "MaterialIcons" !important;
+  font-weight: normal;
+  font-style: normal;
+  // font-size: 24px;
+  line-height: 1;
+  letter-spacing: normal;
+  text-transform: none;
+  display: inline-block;
+  white-space: nowrap;
+  word-wrap: normal;
+  direction: ltr;
+  -webkit-font-smoothing: antialiased;
+}
+
+@font-face {
   font-family: "HighJersey";
   src: url("@/assets/fonts/High_Jersey/High Jersey.woff2") format("woff2"),
     url("@/assets/fonts/High_Jersey/High Jersey.woff") format("woff"),
@@ -7,7 +29,7 @@
   font-style: normal;
 }
 .font-hj {
-  font-family: "HighJersey";
+  font-family: "HighJersey" !important;
 }
 
 @font-face {
@@ -17,5 +39,65 @@
   font-style: normal;
 }
 .font-bb {
-  font-family: "BenguiatBold";
+  font-family: "BenguiatBold" !important;
+}
+
+@font-face {
+  font-family: "Roboto";
+  src: url("@/assets/fonts/Roboto/Roboto-Regular.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+.font-roboto {
+  font-family: "Roboto" !important;
+}
+
+@font-face {
+  font-family: "Montserrat";
+  src: url("@/assets/fonts/Montserrat/static/Montserrat-Regular.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+.font-montserrat {
+  font-family: "Montserrat" !important;
+}
+
+@font-face {
+  font-family: "Adam_Script";
+  src: url("@/assets/fonts/Adam_Script/adam-script.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+.font-adam-scrpit {
+  font-family: "Adam_Script" !important;
+}
+
+@font-face {
+  font-family: "Open_Sans";
+  src: url("@/assets/fonts/Open_Sans/OpenSans-Regular.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+.font-open-sans {
+  font-family: "Open_Sans" !important;
+}
+
+@font-face {
+  font-family: "Open_Sans_Bold";
+  src: url("@/assets/fonts/Open_Sans/OpenSans-Bold.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+.font-open-sans-bold {
+  font-family: "Open_Sans_Bold" !important;
+}
+
+@font-face {
+  font-family: "Calistoga";
+  src: url("@/assets/fonts/Calistoga/Calistoga-Regular.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+.font-calistoga {
+  font-family: "Calistoga" !important;
 }

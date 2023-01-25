@@ -1,0 +1,3 @@
+export const SET_NUMEROS = 'SET_NUMEROS'
+export const SET_STATUS = 'SET_STATUS'
+export const SET_SELECTED_NUMEROS = 'SET_SELECTED_NUMEROS'
