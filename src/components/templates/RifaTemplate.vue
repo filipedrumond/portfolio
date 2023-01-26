@@ -51,6 +51,7 @@ export default {
   background: #efe6dd;
   position: relative;
   overflow: hidden;
+  overflow-y: scroll;
   @media (max-width: 576px) {
     width: 90vw;
   }
