@@ -11,7 +11,7 @@
             <div class="input">
               <label for="inputName" class="form-label"> Nome </label>
               <input
-                type="tel"
+                type="text"
                 class="form-control"
                 id="inputName"
                 placeholder="Nome Sobrenome"
