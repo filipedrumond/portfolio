@@ -6,13 +6,11 @@ export default class Registros {
   static async saveRegistro(registro) {
     let deafult_body = {
       data_hora: '',
+      status: 2,
+      numero: 1,
       usuario: {
         nome: '',
         telefone: '',
-      },
-      numero: {
-        id: 1,
-        status: 1,
       },
     }
     const request_body = Object.assign({}, deafult_body, registro)
@@ -25,6 +23,43 @@ export default class Registros {
             res(response)
           })
           .catch((error) => {
+            rej(error)
+          })
+      } catch (err) {
+        alert('Erro', err)
+        rej(err)
+      }
+    })
+  }
+
+  static async loadRegistros(params) {
+    return new Promise((res, rej) => {
+      try {
+        clientAPI
+          .get(`${urlBase}/registros`, { params })
+          .then((response) => {
+            res(response.data)
+          })
+          .catch((error) => {
+            alert('Erro', err)
+            rej(error)
+          })
+      } catch (err) {
+        rej(err)
+      }
+    })
+  }
+
+  static async updateRegistro(registro) {
+    return new Promise((res, rej) => {
+      try {
+        clientAPI
+          .put(`${urlBase}/registros/${registro.id}`, registro)
+          .then((response) => {
+            res(response)
+          })
+          .catch((error) => {
+            alert('Erro', err)
             rej(error)
           })
       } catch (err) {

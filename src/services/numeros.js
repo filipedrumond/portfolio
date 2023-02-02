@@ -28,6 +28,7 @@ export default class Numeros {
             res(response)
           })
           .catch((error) => {
+            alert('Erro', err)
             rej(error)
           })
       } catch (err) {
@@ -44,6 +45,7 @@ export default class Numeros {
             res(response)
           })
           .catch((error) => {
+            alert('Erro', err)
             rej(error)
           })
       } catch (err) {
@@ -64,6 +66,7 @@ export default class Numeros {
             res(response)
           })
           .catch((error) => {
+            alert('Erro', err)
             rej(error)
           })
       } catch (err) {
