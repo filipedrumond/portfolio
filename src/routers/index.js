@@ -4,6 +4,8 @@ import Home from '../views/Home.vue'
 import Cadastro from '../views/karine/Cadastro.vue'
 import Numeros from '../views/karine/Numeros.vue'
 import Concluido from '../views/karine/Concluido.vue'
+import RifaAdminLogin from '../views/karine/admin/Login.vue'
+import RifaAdmin from '../views/karine/admin/Home.vue'
 
 const routes = [
   {
@@ -25,6 +27,23 @@ const routes = [
     path: '/rifa-karine/concluido',
     name: 'RifaConcluido',
     component: Concluido,
+  },
+  {
+    path: '/rifa-karine/admin/login',
+    name: 'RifaAdminLogin',
+    component: RifaAdminLogin,
+  },
+  {
+    path: '/rifa-karine/admin/',
+    name: 'RifaAdminLiberar',
+    component: RifaAdmin,
+    props: { filter: true },
+  },
+  {
+    path: '/rifa-karine/admin/todos',
+    name: 'RifaAdminTodos',
+    component: RifaAdmin,
+    props: { filter: false },
   },
 ]
 const router = createRouter({

@@ -1,6 +1,9 @@
 <template>
   <div>
     <rifa-template>
+      <div>
+        <router-link to="/rifa-karine">Home</router-link>
+      </div>
       <form @submit="formSubmit">
         <div class="form">
           <div class="titulo">
@@ -9,40 +12,32 @@
 
           <div>
             <div class="input">
-              <label for="inputName" class="form-label"> Nome </label>
+              <label for="inputUsuario" class="form-label"> Usuario </label>
               <input
                 type="text"
                 class="form-control"
-                id="inputName"
-                placeholder="Nome Sobrenome"
-                v-model="form_data.nome"
+                id="inputUsuario"
+                placeholder="Usuario"
+                v-model="form_data.usuario"
                 required
               />
             </div>
             <div class="input">
-              <label for="inputTel" class="form-label"> Telefone </label>
+              <label for="inputSenha" class="form-label"> Senha </label>
               <input
-                type="tel"
+                type="password"
                 class="form-control"
-                id="inputTel"
-                placeholder="(00) 90000-0000"
-                v-mask="['(##) ####-####', '(##) #####-####']"
-                v-model="form_data.telefone"
+                id="inputSenha"
+                placeholder="*****"
+                v-model="form_data.senha"
                 required
               />
             </div>
           </div>
           <div class="rodape">
-            <div class="valor" v-if="Object.entries(numeros).length > 0">
-              Total a pagar:
-              {{ $filters.toMoney(Object.entries(numeros).length * 50) }}
-            </div>
             <div>
-              <button type="submit" class="btn btn-success">Concluir</button>
+              <button type="submit" class="btn btn-success">Entrar</button>
             </div>
-          </div>
-          <div class="dica">
-            <h5>Preencha com seus dados de contato e clique em Concluir</h5>
           </div>
         </div>
       </form>
@@ -52,49 +47,47 @@
 
 <script>
 import RifaTemplate from '@/components/templates/RifaTemplate.vue'
-import '../../assets/img/textura_sorvete.jpg'
 import { mapGetters, mapActions } from 'vuex'
 
 export default {
   name: 'Cadastro',
   components: { RifaTemplate },
-  props: {
-    msg: String,
-  },
   computed: {
-    ...mapGetters('numeros', {
-      numeros: 'getSelectedNumeros',
+    ...mapGetters('session', {
+      usuario: 'getSession',
     }),
   },
   methods: {
-    ...mapActions('session', ['doLogin', 'saveRegistro']),
+    ...mapActions('session', ['doLoginAdmin']),
     formSubmit: async function (e) {
       e.preventDefault()
       let session = this.form_data
-      await this.doLogin(session)
-      await this.saveRegistro()
+      await this.doLoginAdmin(session)
 
       this.$router.push({
-        path: '/rifa-karine/concluido',
+        path: '/rifa-karine/admin/',
       })
     },
   },
   data: () => ({
     form_data: {
-      nome: '',
-      telefone: '',
+      usuario: '',
+      senha: '',
     },
   }),
   created: function () {
-    if (Object.entries(this.numeros).length < 1)
-      return this.$router.push({
-        path: '/rifa-karine',
+    if (
+      this.usuario.hasOwnProperty('permissao') &&
+      this.usuario.permissao == 2
+    ) {
+      this.$router.push({
+        path: '/rifa-karine/admin/',
       })
+    }
   },
 }
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="scss" scoped>
 form {
   display: flex;
