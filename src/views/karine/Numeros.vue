@@ -72,6 +72,9 @@
           </div>
         </div>
       </form>
+      <div>
+        <small> <a href="/rifa-karine/admin/login">admin</a> </small>
+      </div>
     </rifa-template>
   </div>
 </template>
