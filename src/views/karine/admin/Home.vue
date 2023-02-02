@@ -35,6 +35,10 @@
                 <b>{{ registro.numero }}</b>
               </div>
               <div>
+                <span>Status atual:</span>
+                <b>{{ $filters.toStatusName(registro.status) }}</b>
+              </div>
+              <div>
                 <span>Nome:</span>
                 <b>{{ registro.usuario.nome }}</b>
               </div>

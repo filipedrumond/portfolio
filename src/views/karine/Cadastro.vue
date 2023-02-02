@@ -67,7 +67,8 @@ export default {
     }),
   },
   methods: {
-    ...mapActions('session', ['doLogin', 'saveRegistro']),
+    ...mapActions('session', ['doLogin']),
+    ...mapActions('registros', ['saveRegistro']),
     formSubmit: async function (e) {
       e.preventDefault()
       let session = this.form_data

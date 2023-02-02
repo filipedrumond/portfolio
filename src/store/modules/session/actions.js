@@ -5,8 +5,6 @@ import Numeros from '../../../services/numeros'
 import Login from '../../../services/login'
 import Cookies from 'js-cookie'
 
-import moment from '../../../configs/moment'
-
 export const doLogin = async ({ commit }, data = { nome, telefone }) => {
   const defalut_session = {
     nome: '',
@@ -18,31 +16,6 @@ export const doLogin = async ({ commit }, data = { nome, telefone }) => {
   return session
 }
 
-export const saveRegistro = async () => {
-  let numeros = store.getters['numeros/getSelectedNumeros'] || []
-  let numeros_tratados = Object.entries(numeros).map(([index, numero]) => {
-    numero.status = 2
-    return numero
-  })
-  let usuario = store.getters['session/getSession'] || {}
-
-  let promises = []
-  numeros_tratados.forEach((numero) => {
-    let response_numero = Numeros.saveNumeros(numero)
-    promises.push(response_numero)
-
-    let request_body = {
-      data_hora: moment().format('D/M/Y H:m'),
-      status: numero.status,
-      numero: numero.id,
-      usuario,
-    }
-    let response_registro = Registros.saveRegistro(request_body)
-    promises.push(response_registro)
-  })
-  let response = await Promise.all(promises)
-  return response
-}
 export const doLoginAdmin = async ({ commit }, data = { usuario, senha }) => {
   const defalut_session = {
     usuario: '',
