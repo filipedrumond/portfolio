@@ -19,90 +19,28 @@
   ],
   "registros": [
     {
-      "id": 1,
-      "data_hora": "20/01/2023 17:05",
-      "usuario": {
-        "nome": "",
-        "telefone": ""
-      },
-      "numero": 1
-    },
-    {
-      "data_hora": "20/1/2023 17:49",
-      "usuario": {
-        "nome": "TESTES",
-        "telefone": "123"
-      },
-      "numero": 14,
-      "id": 2
-    },
-    {
-      "data_hora": "20/1/2023 17:49",
-      "usuario": {
-        "nome": "TESTES",
-        "telefone": "123"
-      },
-      "numero": 24,
-      "id": 3
-    },
-    {
-      "data_hora": "20/1/2023 17:56",
-      "usuario": {
-        "nome": "hjh",
-        "telefone": "21321"
-      },
-      "numero": 33,
-      "id": 4
-    },
-    {
-      "data_hora": "20/1/2023 18:49",
-      "usuario": {
-        "nome": "a",
-        "telefone": "1"
-      },
-      "numero": {
-        "id": 27,
-        "status": 2
-      },
-      "id": 5
-    },
-    {
       "data_hora": "25/1/2023 18:52",
+      "status": 1,
+      "numero": 29,
+      "id": 1,
       "usuario": {
         "nome": "aa",
         "telefone": "(31) 8"
-      },
-      "numero": {
-        "id": 29,
-        "status": 2
-      },
-      "id": 6
-    },
-    {
-      "data_hora": "25/1/2023 18:55",
-      "usuario": {
-        "nome": "aa",
-        "telefone": "(11) 11"
-      },
-      "numero": {
-        "id": 145,
-        "status": 2
-      },
-      "id": 7
+      }
     }
   ],
   "numeros": [
     {
       "id": 1,
-      "status": 2
+      "status": 1
     },
     {
       "id": 2,
-      "status": 2
+      "status": 1
     },
     {
       "id": 3,
-      "status": 3
+      "status": 1
     },
     {
       "id": 4,
@@ -114,7 +52,7 @@
     },
     {
       "id": 6,
-      "status": 2
+      "status": 1
     },
     {
       "id": 7,
@@ -146,7 +84,7 @@
     },
     {
       "id": 14,
-      "status": 2
+      "status": 1
     },
     {
       "id": 15,
@@ -186,7 +124,7 @@
     },
     {
       "id": 24,
-      "status": 2
+      "status": 1
     },
     {
       "id": 25,
@@ -198,7 +136,7 @@
     },
     {
       "id": 27,
-      "status": 2
+      "status": 1
     },
     {
       "id": 28,
@@ -206,7 +144,7 @@
     },
     {
       "id": 29,
-      "status": 2
+      "status": 1
     },
     {
       "id": 30,
@@ -222,7 +160,7 @@
     },
     {
       "id": 33,
-      "status": 2
+      "status": 1
     },
     {
       "id": 34,
@@ -670,7 +608,7 @@
     },
     {
       "id": 145,
-      "status": 2
+      "status": 1
     },
     {
       "id": 146,
@@ -891,14 +829,7 @@
     {
       "id": 200,
       "status": 1
-    },
-    [
-      {
-        "id": 1,
-        "status": 2,
-        "disabled": true
-      }
-    ]
+    }
   ],
   "status": [
     {
