@@ -14,7 +14,7 @@
         <img class="qrcode" src="../../assets/img/qrcode.png" alt="" />
       </div>
       <div class="btn-rifa">
-        <a href="https://nubank.com.br/pagar/pent8/vQHRDAQ5hg" target="_BLANK">
+        <a href="https://nubank.com.br/pagar/pent8/DWiy1ldr13" target="_BLANK">
           <img class="logo-pix" src="../../assets/img/logo_pix.png" alt="" />
           <h2>Fazer pix</h2>
         </a>
