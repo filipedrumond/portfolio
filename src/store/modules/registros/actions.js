@@ -6,6 +6,7 @@ import moment from '../../../configs/moment'
 
 export const loadRegistrosEmAberto = async ({ commit }, params) => {
   let registros = await Registros.loadRegistros(params)
+  registros = registros.reverse()
   commit(types.SET_REGISTROS, { registros })
   return registros
 }
